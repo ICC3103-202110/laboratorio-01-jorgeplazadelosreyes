@@ -1,3 +1,4 @@
+from numpy import *
 n = int(input('Numero de cartas a jugar: '))
 cards = []
 a = n+1
@@ -30,7 +31,7 @@ def row_and_column(n):
                 n2 += 1
         return row,col
 
-def create_board(row,col,cards):
+def create_board1(row,col):
     board1 = []
     for i in range(col):
         line = []
@@ -39,20 +40,36 @@ def create_board(row,col,cards):
         board1.append(line)
     return board1
 
+def create_board2(row,col,cards):
+    board2 = []
+    for i in range(col):
+        line = []
+        for j in range(row):
+            if len(cards) == 1:
+                line.append(cards[0])
+            else:
+                r = random.randint(len(cards)-1)
+                line.append(cards[r])
+                cards.pop(r)
+        board2.append(line)
+    return board2
+
 def show_board(board1,row,col):
     for i in range(row):
       line = ''
       for j in range(col):
-        line += str(board1[j][i])
+        line += str(board1[j][i]) + " "
       print(line)
 
 
 row = row_and_column(n)[0]
 col = row_and_column(n)[1]
 
-print(row,col)
-board1 = create_board(row,col,cards)
+board1 = create_board1(row,col)
+board2 = create_board2(row,col,cards)
 show_board(board1,row,col)
+show_board(board2,row,col)
+
 
 
 

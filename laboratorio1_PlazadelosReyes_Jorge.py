@@ -2,6 +2,8 @@ from numpy import *
 n = int(input('Numero de cartas a jugar: '))
 cards = []
 a = n+1
+scorep1 = 0
+scorep2 = 0
 
 for i in range(a):
     if i > 0:
@@ -68,7 +70,12 @@ col = row_and_column(n)[1]
 board1 = create_board1(row,col)
 board2 = create_board2(row,col,cards)
 show_board(board1,row,col)
+print('\n')
 show_board(board2,row,col)
+print(board2[0][0])
+print(board2[0][1])
+
+
 
 
 

@@ -63,21 +63,19 @@ def show_board(board1,row,col):
         line += str(board1[j][i]) + " "
       print(line)
 
-def check_coordenates(c1,c2,row,col):
+def check_coordenates(c1,row,col):
     c1 = c1.split(',')
-    c2 = c2.split(',')
 
-    if (int(c1[0]) < 0 or int(c2[0]) < 0):
+    n1 = board1[int(c1[0])][int(c1[1])]
+    if n1 != "*":
         return False
-    if (int(c2[1]) < 0 or int(c2[1]) < 0):
+    if (int(c1[0]) < 0 or int(c1[1]) < 0):
         return False
-    if (int(c1[0]) > (col-1) or int(c2[0]) > (col-1) ):
+    if (int(c1[0]) > (col-1)):
         return False
-    if (int(c2[1]) > (row-1) or int(c2[1]) > (row-1)):
+    if (int(c1[1]) > (row-1)):
         return False
     return True
-
-
 
 
 
@@ -90,38 +88,53 @@ show_board(board1,row,col)
 print('\n')
 show_board(board2,row,col)
 print("Comienza el juego\nJugador 1 empieza\n")
-while True:
-    print("Puntaje jugador 1:", scorep1)
-    print("Puntaje jugador 2:", scorep2)
-    c1 = input("\nJugador 1 ingrese coordenadas de su primera carta con coma y sin parentesis: ")
-    c2 = input("Ingrese coordenadas segunda carta con coma y sin parentesis: ")
-    while not check_coordenates(c1, c2, row, col):
-        print("coordenadas invalidas\n")
-        c1 = input("Jugador 1 ingrese coordenadas de su primera carta con coma y sin parentesis: ")
-        c2 = input("Ingrese coordenadas segunda carta con coma y sin parentesis: ")
-        check_coordenates(c1, c2, row, col)
-    c1 = c1.split(',')
-    c2 = c2.split(',')
-    board1[int(c1[0])][int(c1[1])] = board2[int(c1[0])][int(c1[1])]
-    board1[int(c2[0])][int(c2[1])] = board2[int(c2[0])][int(c2[1])]
-    print("\n")
-    n1 = board2[int(c1[0])][int(c1[1])]
-    n2 = board2[int(c2[0])][int(c2[1])]
-    show_board(board1, row, col)
-    if n1 == n2:
-        print("Correcto!")
-        scorep1 += n1
-        board1[int(c1[0])][int(c1[1])] = " "
-        board1[int(c2[0])][int(c2[1])] = " "
-    else:
-        print("Incorrecto")
-        board1[int(c1[0])][int(c1[1])] = "*"
-        board1[int(c2[0])][int(c2[1])] = "*"
-    show_board(board1, row, col)
-    r = input()
-    if r == 'salir':
-        break
 
+while True:
+    p1 = True
+    p2 = False
+    while p1:
+        r = input("salir?")
+        if r == "si":
+            break
+        print("Puntaje jugador 1:", scorep1)
+        print("Puntaje jugador 2:", scorep2)
+        c1 = input("\nJugador 1 ingrese coordenadas de su primera carta con coma y sin parentesis: ")
+        while not check_coordenates(c1,row,col):
+            print("coordenadas invalidas\n")
+            c1 = input("Jugador 1 ingrese coordenadas de su primera carta con coma y sin parentesis: ")
+            check_coordenates(c1,row, col)
+        c1 = c1.split(',')
+        board1[int(c1[0])][int(c1[1])] = board2[int(c1[0])][int(c1[1])]
+        show_board(board1, row, col)
+        c2 = input("Ingrese coordenadas segunda carta con coma y sin parentesis: ")
+        while not check_coordenates(c2,row,col):
+            print("coordenadas invalidas\n")
+            c2 = input("Jugador 1 ingrese coordenadas de su segunda carta con coma y sin parentesis: ")
+            check_coordenates(c2,row, col)
+        c2 = c2.split(',')
+        board1[int(c2[0])][int(c2[1])] = board2[int(c2[0])][int(c2[1])]
+        show_board(board1, row, col)
+        print("\n")
+        n1 = board2[int(c1[0])][int(c1[1])]
+        n2 = board2[int(c2[0])][int(c2[1])]
+        show_board(board1, row, col)
+        if n1 == n2:
+            print("Correcto!")
+            scorep1 += 1
+            board1[int(c1[0])][int(c1[1])] = " "
+            board1[int(c2[0])][int(c2[1])] = " "
+            print("\nTienes otro turno")
+            continue
+        else:
+            print("Incorrecto")
+            board1[int(c1[0])][int(c1[1])] = "*"
+            board1[int(c2[0])][int(c2[1])] = "*"
+            p1 = False
+            p2 = True
+            break
+
+        show_board(board1, row, col)
+    break
 
 
 

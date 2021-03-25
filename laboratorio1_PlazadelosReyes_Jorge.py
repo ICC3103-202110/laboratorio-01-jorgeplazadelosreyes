@@ -91,7 +91,8 @@ print('\n')
 show_board(board2,row,col)
 print(board2[0][0])
 print(board2[0][1])
-print("Comienza el juego\n")
+
+print("Comienza el juego\nJugador 1 empieza\n")
 while True:
     print("Puntaje jugador 1:", scorep1)
     print("Puntaje jugador 2:", scorep2)
@@ -104,9 +105,10 @@ while True:
         check_coordenates(c1, c2, row, col)
     c1 = c1.split(',')
     c2 = c2.split(',')
-    print(board2[int(c1[0])][int(c1[1])])
-    print(board2[int(c2[0])][int(c2[1])])
+    board1[int(c1[0])][int(c1[1])] = board2[int(c1[0])][int(c1[1])]
+    board1[int(c2[0])][int(c2[1])] = board2[int(c2[0])][int(c2[1])]
 
+    show_board(board1, row, col)
     r = input()
     if r == 'salir':
         break

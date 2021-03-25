@@ -85,16 +85,15 @@ board2 = create_board2(row,col,cards)
 print("\nComienza el juego\nJugador 1 empieza\n")
 show_board(board1,row,col)
 contador = 0
+r = False
 while True:
     p1 = True
     p2 = False
     while p1:
-        r = input("salir?")
         if contador == (n*2):
-            r = 'si'
-        if r == "si":
+            r = 'salir'
             break
-        print("Puntaje jugador 1:", scorep1)
+        print("\nPuntaje jugador 1:", scorep1)
         print("Puntaje jugador 2:", scorep2)
         c1 = input("\nJugador 1 ingrese coordenadas de su primera carta con coma y sin parentesis: ")
         while not check_coordenates(c1,row,col):
@@ -138,12 +137,10 @@ while True:
     if r == 'si':
         break
     while p2:
-        r = input("salir?")
         if contador == (n*2):
-            r = 'si'
-        if r == "si":
+            r = 'salir'
             break
-        print("Puntaje jugador 1:", scorep1)
+        print("\nPuntaje jugador 1:", scorep1)
         print("Puntaje jugador 2:", scorep2)
         c1 = input("\nJugador 2: Ingrese coordenadas de su primera carta con coma y sin parentesis: ")
         while not check_coordenates(c1,row,col):

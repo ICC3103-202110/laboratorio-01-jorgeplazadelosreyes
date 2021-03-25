@@ -4,7 +4,11 @@ scorep1 = 0
 scorep2 = 0
 n = int(input('Numero de cartas a jugar: '))
 a = n+1
-
+print("LEER ANTES DE JUGAR: EXPLICACION COORDENADAS\n 0,0 1,0 2,0 ...\n 0,1 1,1 2,1 ...\n 0,2 1,2 2,2 ...\n ... ... ... ...")
+j = str(input("Empezar juego?(s/n): "))
+while j != 's':
+    j = str(input("Empezar juego?(s/n): "))
+    
 for i in range(a):
     if i > 0:
         cards.append(i)
@@ -132,7 +136,8 @@ while True:
             board1[int(c2[0])][int(c2[1])] = "*"
             p1 = False
             p2 = True
-            print("\nTurno del jugador 2")
+            print("\nTurno del jugador 2\n")
+            show_board(board1,row,col)
             break
     if r == 'si':
         break
@@ -179,15 +184,16 @@ while True:
             board1[int(c2[0])][int(c2[1])] = "*"
             p1 = True
             p2 = False
-            print("\nTurno del jugador 1")
+            print("\nTurno del jugador 1\n")
+            show_board(board1,row,col)
             break
     if r == 'si':
         break
 
 if scorep2 > scorep1:
-    print('\nEl jugador 2 gana la partida!')
+    print('\nEl jugador 2 gana la partida!\n')
 if scorep1 > scorep2:
-    print('\nEl jugador 1 gana la partida!')
+    print('\nEl jugador 1 gana la partida!\n')
 if scorep2 == scorep1:
     print('\nEmpate!')
 
